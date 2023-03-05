@@ -188,7 +188,7 @@ function CustomDrawer({ navigation }: { navigation: any }) {
       <DrawerContentScrollView contentContainerStyle={{ top: 0, left: 30 }}>
         <View>
           <Image
-            source={require("./../../assets/img/genesysLogo.webp")}
+            source={require("./../../assets/img/tradex.webp")}
             style={[stylesM.boxImgDrawer]}
           />
         </View>

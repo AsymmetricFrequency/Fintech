@@ -224,11 +224,7 @@ const Login = ({ navigation }: { navigation: any}) => {
           <View style={[stylesL.JustifyAlign]}>
             <Image
               style={stylesM.boxImgLogin}
-              source={require("../../assets/img/genesysLogo.webp")}
-            />
-            <Image
-              style={[stylesM.boxTextGenesys, stylesM.marginTopTwenty]}
-              source={require("../../assets/img/genesysTitle.webp")}
+              source={require("../../assets/img/tradex.webp")}
             />
           </View>
 

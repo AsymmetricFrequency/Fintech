@@ -36,12 +36,12 @@ const Splash = ({ navigation }: { navigation: any }) => {
           >
             <Image
               style={stylesM.completo__logoGenesys}
-              source={require("../../assets/img/genesysLogo.webp")}
+              source={require("../../assets/img/tradex.webp")}
             />
           </Animatable.View>
           <Image
             style={stylesM.completo__lettersVortex}
-            source={require("../../assets/img/vortexName.png")}
+            source={require("../../assets/img/tradexHorizontal.webp")}
           />
         </View>
       </SafeAreaView>

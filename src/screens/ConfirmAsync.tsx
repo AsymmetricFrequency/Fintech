@@ -263,7 +263,7 @@ const ConfirmAsync = ({
           <View style={[stylesL.JustifyAlign]}>
             <Image
               style={stylesM.boxImgPass}
-              source={require("../../assets/img/genesysLogo.webp")}
+              source={require("../../assets/img/tradex.webp")}
             />
           </View>
           <View
