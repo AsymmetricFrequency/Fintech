@@ -209,14 +209,13 @@ const ReceiveCrypto = ({ navigation }: { navigation: any }) => {
                     stylesM.boxKey,
                   ]}
                 >
-                  <View style={[stylesM.widthPercentageSixty]}>
-                    <Text style={[fontMedium(), stylesM.textColorGray, stylesL.textAlignCenter]}>
+                  <View style={[stylesM.widthPercentageEighty]}>
+                    <Text style={[fontMedium(), stylesM.textColorGray]}>
                       {concatenado}
                     </Text>
                   </View>
-                  <View style={[stylesM.widthPercentageFourty]}>
+                  <View style={[stylesM.widthPercentageTwenty]}>
                     <View
-                      //
                       style={[stylesL.JustifyAlign, stylesL.alignItemsEnd]}
                     >
                       <IconCopy name="copy" size={sizeCopy} color="#ae9ada" />

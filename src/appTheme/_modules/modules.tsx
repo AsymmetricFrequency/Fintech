@@ -1825,7 +1825,7 @@ export const stylesM = StyleSheet.create({
   },
 
   boxKey:{
-    width: RFValue(122),
+    width: RFValue(125),
     padding: RFValue(13),
     borderWidth: 0.5,
     borderColor: "black",
