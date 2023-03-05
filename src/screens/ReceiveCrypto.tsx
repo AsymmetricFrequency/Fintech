@@ -12,13 +12,17 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  Platform,
+  Clipboard,
+  Modal
 } from "react-native";
 import { BarStatus } from "../components/BarStatus";
 import React, { useState, useEffect } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 import QRCode from "react-native-qrcode-svg";
-
+import IconCopy from "react-native-vector-icons/Feather";
+import * as Animatable from "react-native-animatable";
 
 import { readPublicKey } from "../../controller";
 
@@ -26,6 +30,9 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 
 const ReceiveCrypto = ({ navigation }: { navigation: any }) => {
+  const sizeCopy = Platform.OS === "ios" ? 19 : 22;
+  const [anmt, setanmt] = useState("");
+  const [vacioModal, setVacioModal] = useState(false);
 
   const [pubKey, setPubKey] = useState("nopkey");
 
@@ -35,8 +42,26 @@ const ReceiveCrypto = ({ navigation }: { navigation: any }) => {
   }
 
   useEffect(() => {
-    getPubKey()
-  }, [])
+    getPubKey();
+  }, []);
+
+  //Allowed parameters
+  var str = pubKey;
+  var strFirstThree = str.substring(0, 3);
+  var strLastThree = str.substring(str.length - 3, str.length);
+  var concatenado = `${strFirstThree}...${strLastThree}`;
+
+  const CopyKey = () => {
+    Clipboard.setString(pubKey);
+    setVacioModal(true);
+    setanmt("slideInUp");
+    setTimeout(() => {
+      setanmt("fadeOutDownBig");
+      setTimeout(() => {
+        setVacioModal(false);
+      }, 100);
+    }, 1000);
+  };
 
   //fonts
   const [fontsLoadedBold] = useFonts({
@@ -68,6 +93,37 @@ const ReceiveCrypto = ({ navigation }: { navigation: any }) => {
     >
       <SafeAreaView style={stylesB.body}>
         <BarStatus />
+        <Modal
+          visible={vacioModal}
+          transparent
+          onRequestClose={() => setVacioModal(false)}
+          hardwareAccelerated
+        >
+          <Animatable.View
+            animation={anmt}
+            style={[stylesB.completo]}
+            duration={600}
+          >
+            <View
+              style={[
+                stylesM.modalBottom,
+                stylesM.backgroundNavy,
+                stylesL.JustifyAlign,
+                stylesM.radiusFifteen,
+              ]}
+            >
+              <Text
+                style={[
+                  stylesM.textColorCian,
+                  fontBold(),
+                  stylesM.fontSizeFourteen,
+                ]}
+              >
+                ¡Llave publica copiada!
+              </Text>
+            </View>
+          </Animatable.View>
+        </Modal>
         <View style={stylesB.completo}>
           <View style={stylesM.boxArrow}>
             <TouchableOpacity
@@ -126,7 +182,7 @@ const ReceiveCrypto = ({ navigation }: { navigation: any }) => {
             style={[
               stylesM.boxTotal,
               stylesM.backgroundSnow,
-              stylesM.marginTopOneHundredTwentyThree,
+              stylesM.marginTopThirtyThree,
               stylesM.radiusTopTwenty,
               stylesL.FlexOne,
             ]}
@@ -140,9 +196,34 @@ const ReceiveCrypto = ({ navigation }: { navigation: any }) => {
                 style={[
                   stylesM.widthTotal,
                   stylesL.JustifyAlign,
-                  stylesM.marginTopSeventySeven,
+                  stylesM.marginTopSixtytwo,
                 ]}
               >
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => CopyKey()}
+                  style={[
+                    stylesL.flexRow,
+                    stylesM.radiusFifteen,
+                    stylesM.marginBottomTwenty,
+                    stylesM.boxKey,
+                  ]}
+                >
+                  <View style={[stylesM.widthPercentageSixty]}>
+                    <Text style={[fontMedium(), stylesM.textColorGray, stylesL.textAlignCenter]}>
+                      {concatenado}
+                    </Text>
+                  </View>
+                  <View style={[stylesM.widthPercentageFourty]}>
+                    <View
+                      //
+                      style={[stylesL.JustifyAlign, stylesL.alignItemsEnd]}
+                    >
+                      <IconCopy name="copy" size={sizeCopy} color="#ae9ada" />
+                    </View>
+                  </View>
+                </TouchableOpacity>
+
                 <View style={[stylesL.positionRelative, stylesL.JustifyAlign]}>
                   <View>
                     <Image
@@ -155,7 +236,8 @@ const ReceiveCrypto = ({ navigation }: { navigation: any }) => {
                       size={RFValue(210)}
                       backgroundColor={"#FBF9FF"}
                       color={"#71727a"}
-                      value={pubKey}
+                      // value={pubKey}
+                      value={"gola"}
                     />
                   </View>
                 </View>

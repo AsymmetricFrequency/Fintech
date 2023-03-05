@@ -1813,6 +1813,26 @@ export const stylesM = StyleSheet.create({
 
   //End Crypto
 
+  //Receive Crypto
+
+  modalBottom: {
+    paddingLeft: RFValue(12),
+    paddingRight: RFValue(12),
+    bottom: RFValue(50),
+    position: "absolute",
+    height: windowHeight * 0.06,
+    width: windowWidth * 0.95,
+  },
+
+  boxKey:{
+    width: RFValue(122),
+    padding: RFValue(13),
+    borderWidth: 0.5,
+    borderColor: "black",
+  },
+
+  //End Receive Crypto
+
   // Events
 
   boxEvents_titleTxt: {
@@ -2394,4 +2414,6 @@ export const stylesM = StyleSheet.create({
   },
 
   // End EventsInfo
+
+
 });
